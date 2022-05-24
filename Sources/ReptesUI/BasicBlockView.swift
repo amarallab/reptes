@@ -33,7 +33,7 @@ public struct BasicBlockView: BlockView
         } else if BlockMarkdownView.canRender(block: block) {
             BlockMarkdownView(block: block)
         } else {
-            EmptyView()
+            MissingBlockView(block: block)
         }
     }
 }

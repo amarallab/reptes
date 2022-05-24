@@ -1,10 +1,8 @@
 import XCTest
 import Reptes
 @testable import ReptesUI
+import SwiftUI
 
 final class ReptesUITests: XCTestCase {
-    func testChallenge() {
-        let challenge = Challenge.preview
-        _ = ChallengeView(challenge: challenge)
-    }
+
 }

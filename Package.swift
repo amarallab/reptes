@@ -37,6 +37,6 @@ let package = Package(
             dependencies: ["Reptes"]),
         .testTarget(
             name: "ReptesUITests",
-            dependencies: ["ReptesUI"])
+            dependencies: ["Reptes", "ReptesUI"])
     ]
 )

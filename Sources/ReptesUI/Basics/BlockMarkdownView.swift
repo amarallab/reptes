@@ -50,7 +50,6 @@ struct BlockMarkdownView: BlockView {
             .padding(.vertical)
             .padding(.horizontal, (blockMarkdown.backgroundTransparent ?? false) ? CGFloat(0.0) : nil)
             .background((blockMarkdown.backgroundTransparent ?? false) ? Color.clear :  Color.secondarySystemGroupedBackground)
-
             .clipShape(RoundedRectangle(cornerRadius: 10.0))
         }
     }
