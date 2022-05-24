@@ -1,12 +1,12 @@
 //
 //  BlockHeight.swift
-//  
+//  Reptes
 //
 //  Created by Heliodoro Tejedor Navarro on 4/16/22.
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 public enum BlockHeight: String, Codable {
     case reduced

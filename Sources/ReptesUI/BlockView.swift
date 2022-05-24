@@ -1,12 +1,12 @@
 //
 //  BlockView.swift
-//  
+//  ReptesUI
 //
 //  Created by Heliodoro Tejedor Navarro on 4/16/22.
 //
 
-import SwiftUI
 import Reptes
+import SwiftUI
 
 public protocol BlockView: View {
     init(block: Block)

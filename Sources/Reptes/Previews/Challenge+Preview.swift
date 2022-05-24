@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  Challenge+Preview.swift
+//  Reptes
 //
 //  Created by Heliodoro Tejedor Navarro on 4/16/22.
 //

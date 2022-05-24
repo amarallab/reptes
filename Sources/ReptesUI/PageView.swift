@@ -1,12 +1,12 @@
 //
-//  File.swift
-//  
+//  PageView.swift
+//  ReptesUI
 //
 //  Created by Heliodoro Tejedor Navarro on 5/23/22.
 //
 
-import SwiftUI
 import Reptes
+import SwiftUI
 
 struct PageView<BV: BlockView>: View {
     var page: Page

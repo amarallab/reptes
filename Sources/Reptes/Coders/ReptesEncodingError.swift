@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  ReptesEncodingError.swift
+//  Reptes
 //
 //  Created by Heliodoro Tejedor Navarro on 4/8/22.
 //

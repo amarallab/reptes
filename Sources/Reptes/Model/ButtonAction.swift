@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  ButtonAction.swift
+//  Reptes
 //
 //  Created by Heliodoro Tejedor Navarro on 5/13/22.
 //

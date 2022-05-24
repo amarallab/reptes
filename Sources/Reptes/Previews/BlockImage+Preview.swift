@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  BlockImage+Preview.swift
+//  Reptes
 //
 //  Created by Heliodoro Tejedor Navarro on 5/23/22.
 //

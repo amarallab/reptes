@@ -1,6 +1,6 @@
-import XCTest
-import UIKit
 @testable import Reptes
+import UIKit
+import XCTest
 
 final class ReptesTests: XCTestCase {
     private var testChallenge: Challenge!

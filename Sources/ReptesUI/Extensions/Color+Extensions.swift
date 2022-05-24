@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  Color+Extensions.swift
+//  ReptesUI
 //
 //  Created by Heliodoro Tejedor Navarro on 5/23/22.
 //

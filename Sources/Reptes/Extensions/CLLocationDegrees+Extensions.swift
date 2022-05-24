@@ -1,12 +1,12 @@
 //
-//  File.swift
-//  
+//  CLLocationDegrees+Extensions.swift
+//  Reptes
 //
 //  Created by Heliodoro Tejedor Navarro on 5/13/22.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
 public extension CLLocationDegrees {
     enum WrappingDimension: Double {

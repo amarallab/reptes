@@ -1,6 +1,6 @@
 //
 //  BlockMarkdownView.swift
-//  
+//  ReptesUI
 //
 //  Created by Heliodoro Tejedor Navarro on 5/23/22.
 //
@@ -15,11 +15,6 @@ public struct AccessibilityMarkdownStyle: MarkdownStyle {
     public let codeFontName: String?
     public let codeFontSizeMultiple: CGFloat
     public let headingFontSizeMultiples: [CGFloat]
-//    public var font: MarkdownStyle.Font { .system(.body) }
-//    public var foregroundColor: MarkdownStyle.Color = .label
-//    public var codeFontName: String? { nil }
-//    public var codeFontSizeMultiple: CGFloat { 0.94 }
-//    public var headingFontSizeMultiples: [CGFloat] { [2, 1.5, 1.17, 1, 0.83, 0.67] }
 
     public init(font: MarkdownStyle.Font = .system(.body), foregroundColor: MarkdownStyle.Color = .label, codeFontName: String? = nil, codeFontSizeMultiple: CGFloat = 0.94, headingFontSizeMultiples: [CGFloat] = [2, 1.5, 1.17, 1, 0.83, 0.67]) {
         self.font = font

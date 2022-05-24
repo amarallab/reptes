@@ -1,12 +1,12 @@
 //
 //  BlockButtonView.swift
-//  
+//  ReptesUI
 //
 //  Created by Heliodoro Tejedor Navarro on 5/23/22.
 //
 
-import SwiftUI
 import Reptes
+import SwiftUI
 
 struct BlockButtonView: BlockView {
     var block: Block
