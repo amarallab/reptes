@@ -11,5 +11,11 @@ import MapKit
 public struct BlockMap: Block, Codable, Equatable {
     public var id: UUID
     public var height: BlockHeight
-    public var coordinateRegion: MKCoordinateRegion = .northwestern
+    public var coordinateRegion: MKCoordinateRegion
+    
+    public init(id: UUID, height: BlockHeight, coordinateRegion: MKCoordinateRegion = .northwestern) {
+        self.id = id
+        self.height = height
+        self.coordinateRegion = coordinateRegion
+    }
 }

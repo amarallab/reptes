@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-extension CLLocationDegrees {
+public extension CLLocationDegrees {
     enum WrappingDimension: Double {
         case latitude = 180
         case longitude = 360
