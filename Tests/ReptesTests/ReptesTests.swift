@@ -159,4 +159,35 @@ final class ReptesTests: XCTestCase {
             }
         }
     }
+    
+    func testOwnBlock() throws {
+        struct OwnBlock: Block, Codable, Equatable {
+            var id: UUID
+            var text: String
+        }
+        
+        let encoder = ReptesEncoder()
+        try encoder.register(OwnBlock.self, as: "own")
+        
+        let challenge = Challenge(
+            id: UUID(),
+            card: .init(id: UUID()),
+            title: .empty,
+            pages: [
+                .init(
+                    id: UUID(),
+                    title: "internal title",
+                    blocks: [
+                        OwnBlock(id: UUID(), text: "own test")
+                    ])
+            ])
+        
+        let data = try encoder.encode(challenge)
+        
+        let decoder = ReptesDecoder()
+        try decoder.register(OwnBlock.self, as: "own")
+        let decodedChallenge = try decoder.decode(from: data)
+
+        assert(challenge == decodedChallenge)
+    }
 }
