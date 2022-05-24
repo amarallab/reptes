@@ -22,13 +22,6 @@ struct BlockImageView: BlockView {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .clipShape(RoundedRectangle(cornerRadius: 10.0))
-            } else {
-                HStack {
-                    Spacer()
-                    Image(systemName: "xmark.circle")
-                        .foregroundColor(.red)
-                    Spacer()
-                }
             }
         }
     }

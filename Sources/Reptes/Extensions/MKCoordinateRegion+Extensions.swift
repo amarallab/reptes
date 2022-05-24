@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-extension MKCoordinateRegion {
+public extension MKCoordinateRegion {
     /// middle of the south edge
     var south: CLLocation {
         return CLLocation(latitude: center.latitude - span.latitudeDelta / 2, longitude: center.longitude)

@@ -12,4 +12,11 @@ public struct BlockMarkdown: Block, Codable, Equatable {
     public var localizedText: LocalizedText
     public var backgroundTransparent: Bool?
     public var underlined: Bool?
+    
+    public init(id: UUID, localizedText: LocalizedText, backgroundTransparent: Bool? = nil, underlined: Bool? = nil) {
+        self.id = id
+        self.localizedText = localizedText
+        self.backgroundTransparent = backgroundTransparent
+        self.underlined = underlined
+    }
 }

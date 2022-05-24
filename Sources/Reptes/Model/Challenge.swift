@@ -12,4 +12,11 @@ public struct Challenge: Codable, Equatable {
     public var card: ChallengeCard
     public var title: LocalizedText
     public var pages: [Page]
+    
+    public init(id: UUID, card: ChallengeCard, title: LocalizedText, pages: [Page]) {
+        self.id = id
+        self.card = card
+        self.title = title
+        self.pages = pages
+    }
 }

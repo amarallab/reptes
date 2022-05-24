@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol BlockEncoder {
+public protocol BlockEncoder {
     func canEncode(block: Block) -> Bool
     func encode(block: Block, to encoder: Encoder) throws
 }

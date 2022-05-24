@@ -1,5 +1,5 @@
 //
-//  Challenge.swift
+//  BaseChallengeView.swift
 //  
 //
 //  Created by Heliodoro Tejedor Navarro on 4/16/22.
@@ -12,6 +12,12 @@ public struct BaseChallengeView<BV: BlockView>: View {
     public var challenge: Challenge
     @State public var selection: UUID = UUID()
     public var close: (() -> Void)?
+    
+    public init(challenge: Challenge, selection: UUID = UUID(), close: (() -> Void)? = nil) {
+        self.challenge = challenge
+        self.selection = selection
+        self.close = close
+    }
     
     public var body: some View {
         TabView(selection: $selection) {
@@ -180,11 +186,30 @@ extension BaseChallengeView {
     }
 }
 
-public typealias ChallengeView = BaseChallengeView<EmptyBlockView>
+public typealias ChallengeView = BaseChallengeView<BasicBlockView>
 
 struct ChallegeView_Previews: PreviewProvider {
+    struct BlockMissing: Block, Codable, Equatable {
+        public var id: UUID
+    }
+    
+    static var missingBlockChallenge = Challenge(
+        id: UUID(),
+        card: .init(id: UUID()),
+        title: .empty,
+        pages: [
+            .init(
+                id: UUID(),
+                title: "",
+                blocks: [
+                    BlockMissing(id: UUID()),
+                    BlockImage.preview
+                ]
+            )
+        ])
+
     static var previews: some View {
         ChallengeView(challenge: .preview)
-            .register(BasicBlockView.self)
+        ChallengeView(challenge: missingBlockChallenge)
     }
 }

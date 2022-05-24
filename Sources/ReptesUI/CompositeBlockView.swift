@@ -29,7 +29,7 @@ public struct CompositeBlockView<T1, T2>: BlockView
         } else if T2.canRender(block: block) {
             T2(block: block)
         } else {
-            EmptyView()
+            MissingBlockView(block: block)
         }
     }
 }

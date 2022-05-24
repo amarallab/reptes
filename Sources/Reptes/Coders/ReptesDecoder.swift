@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol BlockDecoder {
+public protocol BlockDecoder {
     func decode(from decoder: Decoder) throws -> Block
 }
 
