@@ -10,6 +10,10 @@ import SwiftUI
 
 struct BlockImageView: BlockView {
     var block: Block
+
+    init(block: Block, actions: [Action]) {
+        self.block = block
+    }
     
     static func canRender(block: Block) -> Bool {
         block is BlockImage

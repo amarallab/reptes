@@ -10,6 +10,8 @@ import SwiftUI
 
 struct PageView<BV: BlockView>: View {
     var page: Page
+    var actions: [Action]
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             ScrollView {
@@ -17,7 +19,7 @@ struct PageView<BV: BlockView>: View {
                     Spacer()
                     VStack(spacing: 20) {
                         ForEach(page.blocks, id: \.id) { block in
-                            BV(block: block)
+                            BV(block: block, actions: actions)
                         }
                     }
                     Spacer()
@@ -30,6 +32,6 @@ struct PageView<BV: BlockView>: View {
 
 struct PageView_Previews: PreviewProvider {
     static var previews: some View {
-        PageView<BasicBlockView>(page: .preview)
+        PageView<BasicBlockView>(page: .preview, actions: [])
     }
 }

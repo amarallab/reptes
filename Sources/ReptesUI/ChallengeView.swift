@@ -10,28 +10,29 @@ import SwiftUI
 
 public typealias ChallengeView = BaseChallengeView<BasicBlockView>
 
-struct ChallegeView_Previews: PreviewProvider {
-    struct BlockMissing: Block, Codable, Equatable {
-        public var id: UUID
-    }
-    
-    static var missingBlockChallenge = Challenge(
-        id: UUID(),
-        card: .init(id: UUID()),
-        title: .empty,
-        pages: [
-            .init(
-                id: UUID(),
-                title: "",
-                blocks: [
-                    BlockMissing(id: UUID()),
-                    BlockImage.preview
-                ]
-            )
-        ])
+fileprivate struct DynChallengeView: View {
+    @State var value: String = "[...]"
 
+    var body: some View {
+        VStack(spacing: 20) {
+            Text(value)
+            ChallengeView(challenge: .preview)
+                .onButtonAction {
+                    switch $0.action {
+                    case .close:
+                        value = "Close"
+                    default:
+                        value = "Receiving: \($0)"
+                    }
+                }
+        }
+    }
+}
+
+struct ChallengeView_Previews: PreviewProvider {
     static var previews: some View {
-        ChallengeView(challenge: .preview)
-        ChallengeView(challenge: missingBlockChallenge)
+        DynChallengeView()
+        ChallengeView(challenge: .missingBlockPreview)
+        ChallengeView(challenge: .multipagePreview)
     }
 }
