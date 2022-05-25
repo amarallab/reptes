@@ -10,19 +10,62 @@ import SwiftUI
 
 public struct BaseChallengeView<BV: BlockView>: View {
     public var challenge: Challenge
+    public var actions: [Action] = []
     @State public var selection: UUID = UUID()
-    public var close: (() -> Void)?
     
-    public init(challenge: Challenge, selection: UUID = UUID(), close: (() -> Void)? = nil) {
+    public init(challenge: Challenge, actions: [Action] = [], selection: UUID = UUID()) {
         self.challenge = challenge
+        self.actions = actions
         self.selection = selection
-        self.close = close
+    }
+    
+    func prevId(of id: UUID) -> UUID? {
+        guard
+            let firstIndex = challenge.pages.firstIndex(where: { $0.id == id }),
+            let prevIndex = challenge.pages.index(firstIndex, offsetBy: -1, limitedBy: challenge.pages.startIndex)
+        else {
+            return nil
+        }
+        return challenge.pages[prevIndex].id
+    }
+    
+    func nextId(of id: UUID) -> UUID? {
+        guard
+            let firstIndex = challenge.pages.firstIndex(where: { $0.id == id }),
+            let nextIndex = challenge.pages.index(firstIndex, offsetBy: 1, limitedBy: challenge.pages.endIndex)
+        else {
+            return nil
+        }
+        return challenge.pages[nextIndex].id
+    }
+
+    var internalActions: [Action] {
+        [
+            BlockButtonFeedback { button in
+                switch button.action {
+                case .next:
+                    if let id = nextId(of: selection) {
+                        withAnimation {
+                            selection = id
+                        }
+                    }
+                case .previous:
+                    if let id = prevId(of: selection) {
+                        withAnimation {
+                            selection = id
+                        }
+                    }
+                default:
+                    break
+                }
+            }
+        ] + actions
     }
     
     public var body: some View {
         TabView(selection: $selection) {
             ForEach(challenge.pages) { page in
-                PageView<BV>(page: page)
+                PageView<BV>(page: page, actions: internalActions)
             }
         }
         .edgesIgnoringSafeArea(.bottom)
@@ -38,7 +81,7 @@ extension BaseChallengeView {
             CompositeBlockView<BV, BV1>
         >
     {
-        .init(challenge: challenge, selection: selection, close: close)
+        .init(challenge: challenge, actions: actions, selection: selection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type) ->
@@ -49,7 +92,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, selection: selection, close: close)
+        .init(challenge: challenge, actions: actions, selection: selection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type) ->
@@ -60,7 +103,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, selection: selection, close: close)
+        .init(challenge: challenge, actions: actions, selection: selection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView, BV4: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type, _ bv4: BV4.Type) ->
@@ -74,7 +117,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, selection: selection, close: close)
+        .init(challenge: challenge, actions: actions, selection: selection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView, BV4: BlockView, BV5: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type, _ bv4: BV4.Type, _ bv5: BV5.Type)
@@ -89,7 +132,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, selection: selection, close: close)
+        .init(challenge: challenge, actions: actions, selection: selection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView, BV4: BlockView, BV5: BlockView, BV6: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type, _ bv4: BV4.Type, _ bv5: BV5.Type, _ bv6: BV6.Type)
@@ -107,7 +150,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, selection: selection, close: close)
+        .init(challenge: challenge, actions: actions, selection: selection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView, BV4: BlockView, BV5: BlockView, BV6: BlockView, BV7: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type, _ bv4: BV4.Type, _ bv5: BV5.Type, _ bv6: BV6.Type, _ bv7: BV7.Type)
@@ -125,32 +168,13 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, selection: selection, close: close)
+        .init(challenge: challenge, actions: actions, selection: selection)
     }
 }
 
 struct BaseChallegeView_Previews: PreviewProvider {
-    struct BlockMissing: Block, Codable, Equatable {
-        public var id: UUID
-    }
-    
-    static var missingBlockChallenge = Challenge(
-        id: UUID(),
-        card: .init(id: UUID()),
-        title: .empty,
-        pages: [
-            .init(
-                id: UUID(),
-                title: "",
-                blocks: [
-                    BlockMissing(id: UUID()),
-                    BlockImage.preview
-                ]
-            )
-        ])
-
     static var previews: some View {
         BaseChallengeView<BasicBlockView>(challenge: .preview)
-        BaseChallengeView<BasicBlockView>(challenge: missingBlockChallenge)
+        BaseChallengeView<BasicBlockView>(challenge: .missingBlockPreview)
     }
 }

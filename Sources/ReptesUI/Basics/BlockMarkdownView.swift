@@ -27,6 +27,10 @@ public struct AccessibilityMarkdownStyle: MarkdownStyle {
 
 struct BlockMarkdownView: BlockView {
     var block: Reptes.Block
+
+    init(block: Reptes.Block, actions: [Action]) {
+        self.block = block
+    }
     
     static func canRender(block: Reptes.Block) -> Bool {
         block is BlockMarkdown
