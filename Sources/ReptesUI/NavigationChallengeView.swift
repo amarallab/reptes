@@ -8,12 +8,12 @@
 import Reptes
 import SwiftUI
 
-public struct NavigationChallengeView: View {
+public struct NavigationChallengeView<BV: BlockView>: View {
     public var title: LocalizedStringKey
-    public var challengeViewBuilder: () -> ChallengeView
+    public var challengeViewBuilder: () -> BaseChallengeView<BV>
     public var close: (() -> Void)? = nil
 
-    public init(title: LocalizedStringKey, challengeViewBuilder: @escaping () -> ChallengeView, close: (() -> Void)? = nil) {
+    public init(title: LocalizedStringKey, challengeViewBuilder: @escaping () -> BaseChallengeView<BV>, close: (() -> Void)? = nil) {
         self.title = title
         self.challengeViewBuilder = challengeViewBuilder
         self.close = close
@@ -40,6 +40,33 @@ public struct NavigationChallengeView: View {
     }
 }
 
+fileprivate struct MyBlock: Block, Codable, Equatable {
+    var id: UUID
+    var text: String
+}
+
+fileprivate struct MyBlockView: BlockView {
+    var block: Block
+    var actions: [Action]
+
+    static func canRender(block: Block) -> Bool {
+        block is MyBlock
+    }
+    
+    var body: some View {
+        if let myBlock = block as? MyBlock {
+            HStack {
+                Spacer()
+                Text("This is a MyBlock ") + Text(myBlock.text)
+                Spacer()
+            }
+            .padding()
+            .background(Color.secondarySystemGroupedBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
+    }
+}
+
 fileprivate struct SheetChallengeView: View {
     @State var showing: Bool = false
     
@@ -56,6 +83,7 @@ fileprivate struct SheetChallengeView: View {
         .sheet(isPresented: $showing) {
             NavigationChallengeView(title: "Sheet example") {
                 ChallengeView(challenge: .multipagePreview)
+                    .register(MyBlockView.self)
             } close: {
                 showing = false
             }
