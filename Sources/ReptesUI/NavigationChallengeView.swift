@@ -8,13 +8,18 @@
 import Reptes
 import SwiftUI
 
-struct NavigationChallengeView: View {
-    var title: LocalizedStringKey
-    var challengeViewBuilder: () -> ChallengeView
-    var actions: [Action] = []
-    var close: (() -> Void)? = nil
+public struct NavigationChallengeView: View {
+    public var title: LocalizedStringKey
+    public var challengeViewBuilder: () -> ChallengeView
+    public var close: (() -> Void)? = nil
 
-    var body: some View {
+    public init(title: LocalizedStringKey, challengeViewBuilder: @escaping () -> ChallengeView, close: (() -> Void)? = nil) {
+        self.title = title
+        self.challengeViewBuilder = challengeViewBuilder
+        self.close = close
+    }
+    
+    public var body: some View {
         NavigationView {
             challengeViewBuilder()
                 .onButtonAction {
