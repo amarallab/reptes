@@ -24,7 +24,7 @@ struct PageView<BV: BlockView>: View {
                     }
                     Spacer()
                 }
-                .padding(.horizontal)
+                .padding([.horizontal, .bottom])
             }
         }
     }
