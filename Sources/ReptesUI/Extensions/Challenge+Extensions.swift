@@ -13,7 +13,7 @@ fileprivate struct BlockWeird: Block, Codable, Equatable {
 }
 
 extension Challenge {
-    static let missingBlockPreview = Challenge(
+    public static let missingBlockPreview = Challenge(
         id: UUID(),
         card: .init(id: UUID()),
         title: .empty,
@@ -28,7 +28,7 @@ extension Challenge {
             )
         ])
     
-    static let multipagePreview = Challenge(
+    public static let multipagePreview = Challenge(
         id: UUID(),
         card: .init(id: UUID()),
         title: .empty,
@@ -63,5 +63,19 @@ extension Challenge {
                 ]
             )
         ])
-    
 }
+
+extension Array where Element == Challenge {
+    public static let preview = (1...10).map { _ in
+        Challenge(
+            id: UUID(),
+            card: .previewTextFirst,
+            title: .init(values: [
+                "en": "Title (EN)",
+                "es": "Title (ES)"
+            ]),
+            pages: .preview
+        )
+    }
+}
+

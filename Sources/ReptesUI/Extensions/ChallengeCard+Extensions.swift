@@ -10,7 +10,7 @@ import Reptes
 import UIKit
 
 extension ChallengeCard {
-    static public let previewTextFirst = ChallengeCard(
+    public static let previewTextFirst = ChallengeCard(
         id: UUID(),
         backgroundColor: .init(color: .green),
         foregroundColor: .init(color: .white),
@@ -23,7 +23,7 @@ extension ChallengeCard {
                   """
         ]))
 
-    static public let previewTextLast = ChallengeCard(
+    public static let previewTextLast = ChallengeCard(
         id: UUID(),
         backgroundColor: .init(color: .green),
         foregroundColor: .init(color: .white),
