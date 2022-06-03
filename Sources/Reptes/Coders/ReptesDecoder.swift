@@ -52,6 +52,7 @@ public class ReptesDecoder: ObservableObject {
         }
 
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
         decoder.dataDecodingStrategy = .base64
         decoder.userInfo[reptesDecoderKey] = self
         return try decoder.decode(Challenge.self, from: data)

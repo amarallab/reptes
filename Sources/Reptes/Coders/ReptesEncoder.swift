@@ -54,6 +54,7 @@ public class ReptesEncoder: ObservableObject {
         }
 
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         encoder.dataEncodingStrategy = .base64
         encoder.userInfo[reptesEncoderKey] = self
         return try encoder.encode(value)

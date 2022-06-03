@@ -20,3 +20,5 @@ public struct Challenge: Codable, Equatable {
         self.pages = pages
     }
 }
+
+extension Challenge: Identifiable { }
