@@ -25,8 +25,8 @@ public struct ChallengeCardView: View {
             HStack {
                 Group(reversed: card.imageStyle == .textLast) {
                     VStack(alignment: .leading) {
-                        Markdown(Document(card.localizedTitle.text))
-                            .markdownStyle(AccessibilityMarkdownStyle(foregroundColor: card.foregroundColor?.uiColor ?? UIColor.white))
+                        Markdown(card.localizedTitle.text)
+                            .foregroundColor(card.foregroundColor?.color ?? Color.white)
                             .id(card.localizedTitle.text)
                         Spacer()
                     }
