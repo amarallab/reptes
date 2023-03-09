@@ -23,8 +23,11 @@ struct BlockMarkdownView: BlockView {
     var body: some View {
         if let blockMarkdown = block as? BlockMarkdown {
             VStack(spacing: 0) {
-                Markdown(blockMarkdown.localizedText.text)
-                    .id(blockMarkdown.localizedText.text)
+                HStack {
+                    Markdown(blockMarkdown.localizedText.text)
+                        .id(blockMarkdown.localizedText.text)
+                    Spacer()
+                }
                 if blockMarkdown.underlined ?? false {
                     Divider()
                 }
