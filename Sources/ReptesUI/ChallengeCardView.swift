@@ -9,6 +9,18 @@ import MarkdownUI
 import Reptes
 import SwiftUI
 
+extension Theme {
+    static func basicWith(foregroundColor: Color? = nil) -> Theme {
+        var current = Theme.basic
+        if let foregroundColor {
+            current = current.text {
+                ForegroundColor(foregroundColor)
+            }
+        }
+        return current
+    }
+}
+
 public struct ChallengeCardView: View {
     var card: ChallengeCard
     var mapWidth: CGFloat
@@ -25,9 +37,12 @@ public struct ChallengeCardView: View {
             HStack {
                 Group(reversed: card.imageStyle == .textLast) {
                     VStack(alignment: .leading) {
-                        Markdown(card.localizedTitle.text)
-                            .foregroundColor(card.foregroundColor?.color ?? Color.white)
-                            .id(card.localizedTitle.text)
+                        HStack {
+                            Markdown(card.localizedTitle.text)
+                                .markdownTheme(.basicWith(foregroundColor: card.foregroundColor?.color))
+                                .id(card.localizedTitle.text)
+                            Spacer()
+                        }
                         Spacer()
                     }
                     .padding()
@@ -61,8 +76,13 @@ struct ChallengeCardView_Previews: PreviewProvider {
             List {
                 ChallengeCardView(card: .previewTextFirst, mapWidth: proxy.size.width * 0.3) {
                 }
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+                
                 ChallengeCardView(card: .previewTextLast, mapWidth: proxy.size.width * 0.3) {
                 }
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
             }
             .listStyle(.sidebar)
         }
