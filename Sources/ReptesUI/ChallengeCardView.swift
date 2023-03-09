@@ -61,7 +61,6 @@ public struct ChallengeCardView: View {
             }
             .fixedSize(horizontal: false, vertical: true)
         }
-        .foregroundColor(card.foregroundColor?.color)
         .background(card.backgroundColor?.color ?? Color.accentColor)
         .cornerRadius(8.0)
         .contentShape(Rectangle())
