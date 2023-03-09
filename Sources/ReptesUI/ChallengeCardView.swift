@@ -24,12 +24,10 @@ extension Theme {
 public struct ChallengeCardView: View {
     var card: ChallengeCard
     var mapWidth: CGFloat
-    var onTap: () -> Void
     
-    public init(card: ChallengeCard, mapWidth: CGFloat, onTap: @escaping () -> Void) {
+    public init(card: ChallengeCard, mapWidth: CGFloat) {
         self.card = card
         self.mapWidth = mapWidth
-        self.onTap = onTap
     }
 
     public var body: some View {
@@ -64,26 +62,37 @@ public struct ChallengeCardView: View {
         .background(card.backgroundColor?.color ?? Color.accentColor)
         .cornerRadius(8.0)
         .contentShape(Rectangle())
-        .onTapGesture(perform: onTap)
         .accessibilityAddTraits(.isButton)
     }
 }
 
 struct ChallengeCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        GeometryReader { proxy in
-            List {
-                ChallengeCardView(card: .previewTextFirst, mapWidth: proxy.size.width * 0.3) {
+    struct Combined: View {
+        @State var count = 1
+        
+        var body: some View {
+            GeometryReader { proxy in
+                List {
+                    Text("Value: \(count)")
+                    ChallengeCardView(card: .previewTextFirst, mapWidth: proxy.size.width * 0.3)
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
+                    
+                    Button {
+                        count += 1
+                    } label: {
+                        ChallengeCardView(card: .previewTextLast, mapWidth: proxy.size.width * 0.3)
+                    }
+                    .buttonStyle(.borderless)
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
                 }
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.clear)
-                
-                ChallengeCardView(card: .previewTextLast, mapWidth: proxy.size.width * 0.3) {
-                }
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.clear)
+                .listStyle(.sidebar)
             }
-            .listStyle(.sidebar)
         }
+    }
+    
+    static var previews: some View {
+        Combined()
     }
 }
