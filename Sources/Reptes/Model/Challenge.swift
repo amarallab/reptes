@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Challenge: Codable, Equatable {
+public struct Challenge: Codable, Equatable, Hashable, Identifiable {
     public var id: UUID
     public var card: ChallengeCard
     public var title: LocalizedText
@@ -20,5 +20,3 @@ public struct Challenge: Codable, Equatable {
         self.pages = pages
     }
 }
-
-extension Challenge: Identifiable { }

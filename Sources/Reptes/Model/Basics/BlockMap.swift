@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-public struct BlockMap: Block, Codable, Equatable {
+public struct BlockMap: Block, Codable, Equatable, Hashable {
     public var id: UUID
     public var height: BlockHeight
     public var coordinateRegion: MKCoordinateRegion

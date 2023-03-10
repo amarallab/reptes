@@ -12,15 +12,15 @@ public struct CompositeBlockView<T1, T2>: BlockView
     where T1 : BlockView,
           T2 : BlockView
 {
-    var block: Block
+    var block: any Block
     var actions: [Action]
     
-    public init(block: Block, actions: [Action]) {
+    public init(block: any Block, actions: [Action]) {
         self.block = block
         self.actions = actions
     }
     
-    public static func canRender(block: Block) -> Bool {
+    public static func canRender(block: any Block) -> Bool {
         T1.canRender(block: block)
         || T2.canRender(block: block)
     }

@@ -24,15 +24,15 @@ public extension BaseChallengeView {
 }
 
 struct BlockButtonView: BlockView {
-    var block: Block
+    var block: any Block
     var actions: [Action]
     
-    init(block: Block, actions: [Action]) {
+    init(block: any Block, actions: [Action]) {
         self.block = block
         self.actions = actions
     }
     
-    static func canRender(block: Block) -> Bool {
+    static func canRender(block: any Block) -> Bool {
         block is BlockButton
     }
 

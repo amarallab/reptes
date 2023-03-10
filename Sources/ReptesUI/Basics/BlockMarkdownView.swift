@@ -10,13 +10,13 @@ import Reptes
 import SwiftUI
 
 struct BlockMarkdownView: BlockView {
-    var block: Reptes.Block
+    var block: any Block
 
-    init(block: Reptes.Block, actions: [Action]) {
+    init(block: any Block, actions: [Action]) {
         self.block = block
     }
     
-    static func canRender(block: Reptes.Block) -> Bool {
+    static func canRender(block: any Block) -> Bool {
         block is BlockMarkdown
     }
     

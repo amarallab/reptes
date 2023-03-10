@@ -9,10 +9,10 @@ import Reptes
 import SwiftUI
 
 public struct MissingBlockView: BlockView {
-    public init(block: Block, actions: [Action]) {
+    public init(block: any Block, actions: [Action]) {
     }
     
-    public static func canRender(block: Block) -> Bool {
+    public static func canRender(block: any Block) -> Bool {
         false
     }
 

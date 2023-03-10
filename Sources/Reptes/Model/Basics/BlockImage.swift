@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public struct BlockImage: Block, Codable, Equatable {
+public struct BlockImage: Block, Codable, Equatable, Hashable {
     public var id: UUID
     public var height: BlockHeight
     public var image: UIImage?

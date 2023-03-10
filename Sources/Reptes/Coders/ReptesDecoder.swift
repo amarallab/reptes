@@ -8,14 +8,14 @@
 import Foundation
 
 public protocol BlockDecoder {
-    func decode(from decoder: Decoder) throws -> Block
+    func decode(from decoder: Decoder) throws -> any Block
 }
 
 public class ReptesDecoder: ObservableObject {
     private struct AnonymousBlockDecoder: BlockDecoder {
-        let block: (Decoder) throws -> Block
+        let block: (Decoder) throws -> any Block
 
-        func decode(from decoder: Decoder) throws -> Block {
+        func decode(from decoder: Decoder) throws -> any Block {
             try block(decoder)
         }
     }

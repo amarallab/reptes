@@ -8,8 +8,8 @@
 import Foundation
 import Reptes
 
-extension Array where Element == Block {
-    public static let preview: [Block] = [
+extension Array where Element == any Block {
+    public static let preview: [any Block] = [
         BlockMarkdown(id: UUID(), localizedText: .init(values: ["en": "Final page"])),
         BlockImage.preview,
         BlockButton(id: UUID(), localizedText: .init(values: ["en": "Previous"]), action: .previous),

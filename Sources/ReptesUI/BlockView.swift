@@ -9,6 +9,6 @@ import Reptes
 import SwiftUI
 
 public protocol BlockView: View {
-    init(block: Block, actions: [Action])
-    static func canRender(block: Block) -> Bool
+    init(block: any Block, actions: [Action])
+    static func canRender(block: any Block) -> Bool
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct BlockButton: Block, Codable, Equatable {
+public struct BlockButton: Block, Codable, Equatable, Hashable {
     public var id: UUID
     public var localizedText: LocalizedText
     public var foregroundColor: JSONColor?

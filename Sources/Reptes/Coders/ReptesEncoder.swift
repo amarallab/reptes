@@ -8,16 +8,16 @@
 import Foundation
 
 public protocol BlockEncoder {
-    func canEncode(block: Block) -> Bool
-    func encode(block: Block, to encoder: Encoder) throws
+    func canEncode(block: any Block) -> Bool
+    func encode(block: any Block, to encoder: Encoder) throws
 }
 
 public class ReptesEncoder: ObservableObject {
     private struct AnonymousBlockEncoder<T: Block>: BlockEncoder {
-        func canEncode(block: Block) -> Bool {
+        func canEncode(block: any Block) -> Bool {
             block is T
         }
-        func encode(block: Block, to encoder: Encoder) throws {
+        func encode(block: any Block, to encoder: Encoder) throws {
             try block.encode(to: encoder)
         }
     }

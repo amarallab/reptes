@@ -7,10 +7,10 @@
 
 import Foundation
 
-public struct Page: Codable, Equatable, Identifiable {
+public struct Page: Codable, Equatable, Hashable, Identifiable {
     public var id: UUID
     public var title: String
-    public var blocks: [Block]
+    public var blocks: [any Block]
 
     enum CodingKeys: String, CodingKey {
         case id, title, blocks
@@ -20,7 +20,7 @@ public struct Page: Codable, Equatable, Identifiable {
         case type
     }
     
-    public init(id: UUID, title: String, blocks: [Block]) {
+    public init(id: UUID, title: String, blocks: [any Block]) {
         self.id = id
         self.title = title
         self.blocks = blocks
@@ -36,7 +36,7 @@ public struct Page: Codable, Equatable, Identifiable {
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
         var blockContainer = try container.nestedUnkeyedContainer(forKey: .blocks)
-        var blocks: [Block] = []
+        var blocks: [any Block] = []
         while !blockContainer.isAtEnd {
             let decoder = try blockContainer.superDecoder()
             let container  = try decoder.container(keyedBy: BlockTypeCodingKeys.self)
@@ -92,6 +92,14 @@ public struct Page: Codable, Equatable, Identifiable {
             if notFound {
                 throw ReptesEncodingError.blockEncoderNotFound(block)
             }
+        }
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+        for block in blocks {
+            hasher.combine(block)
         }
     }
 }

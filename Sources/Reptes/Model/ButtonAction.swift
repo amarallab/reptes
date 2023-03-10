@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ButtonAction: Codable, Equatable {
+public enum ButtonAction: Codable, Equatable, Hashable {
     case next
     case previous
     case close

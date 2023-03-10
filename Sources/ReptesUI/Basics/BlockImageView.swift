@@ -9,13 +9,13 @@ import Reptes
 import SwiftUI
 
 struct BlockImageView: BlockView {
-    var block: Block
+    var block: any Block
 
-    init(block: Block, actions: [Action]) {
+    init(block: any Block, actions: [Action]) {
         self.block = block
     }
     
-    static func canRender(block: Block) -> Bool {
+    static func canRender(block: any Block) -> Bool {
         block is BlockImage
     }
     

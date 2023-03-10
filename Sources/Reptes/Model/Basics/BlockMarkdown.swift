@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct BlockMarkdown: Block, Codable, Equatable {
+public struct BlockMarkdown: Block, Codable, Equatable, Hashable {
     public var id: UUID
     public var localizedText: LocalizedText
     public var backgroundTransparent: Bool?

@@ -10,5 +10,5 @@ import Foundation
 public enum ReptesEncodingError: Error {
     case duplicatedEncoder
     case internalError
-    case blockEncoderNotFound(Block)
+    case blockEncoderNotFound(any Block)
 }

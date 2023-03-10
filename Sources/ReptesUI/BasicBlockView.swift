@@ -8,17 +8,16 @@
 import Reptes
 import SwiftUI
 
-public struct BasicBlockView: BlockView
-{
-    var block: Block
+public struct BasicBlockView: BlockView {
+    var block: any Block
     var actions: [Action]
 
-    public init(block: Block, actions: [Action]) {
+    public init(block: any Block, actions: [Action]) {
         self.block = block
         self.actions = actions
     }
     
-    public static func canRender(block: Block) -> Bool {
+    public static func canRender(block: any Block) -> Bool {
         BlockButtonView.canRender(block: block)
         || BlockImageView.canRender(block: block)
         || BlockMapView.canRender(block: block)
