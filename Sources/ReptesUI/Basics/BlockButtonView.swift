@@ -16,13 +16,6 @@ public struct BlockButtonFeedback: Action {
     }
 }
 
-public extension BaseChallengeView {
-    func onButtonAction(_ event: @escaping (BlockButton) -> Void) -> Self {
-        let feedback = BlockButtonFeedback(event)
-        return .init(challenge: challenge, actions: actions + [feedback], selection: selection)
-    }
-}
-
 struct BlockButtonView: BlockView {
     var block: any Block
     var actions: [Action]

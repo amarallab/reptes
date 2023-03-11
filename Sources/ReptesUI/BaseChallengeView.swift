@@ -9,14 +9,30 @@ import Reptes
 import SwiftUI
 
 public struct BaseChallengeView<BV: BlockView>: View {
-    public var challenge: Challenge
-    public var actions: [Action] = []
-    @State public var selection: UUID = UUID()
+    private var challenge: Challenge
+    private var actions: [Action] = []
+    @Binding private var selection: UUID
+    @State private var internalSelection: UUID
     
-    public init(challenge: Challenge, actions: [Action] = [], selection: UUID = UUID()) {
+    public init(challenge: Challenge, actions: [Action] = [], initialSelection: UUID = UUID()) {
         self.challenge = challenge
         self.actions = actions
-        self.selection = selection
+        self._internalSelection = State(initialValue: initialSelection)
+        self._selection = self._internalSelection.projectedValue
+    }
+    
+    public init(challenge: Challenge, actions: [Action] = [], selection: Binding<UUID>) {
+        self.challenge = challenge
+        self.actions = actions
+        self._internalSelection = State(initialValue: UUID())
+        self._selection = selection
+    }
+    
+    public init(challenge: Challenge, actions: [Action], selection: Binding<UUID>, internalSelection: State<UUID>) {
+        self.challenge = challenge
+        self.actions = actions
+        self._selection = selection
+        self._internalSelection = internalSelection
     }
     
     func prevId(of id: UUID) -> UUID? {
@@ -81,7 +97,7 @@ extension BaseChallengeView {
             CompositeBlockView<BV, BV1>
         >
     {
-        .init(challenge: challenge, actions: actions, selection: selection)
+        .init(challenge: challenge, actions: actions, selection: _selection, internalSelection: _internalSelection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type) ->
@@ -92,7 +108,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, actions: actions, selection: selection)
+        .init(challenge: challenge, actions: actions, selection: _selection, internalSelection: _internalSelection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type) ->
@@ -103,7 +119,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, actions: actions, selection: selection)
+        .init(challenge: challenge, actions: actions, selection: _selection, internalSelection: _internalSelection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView, BV4: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type, _ bv4: BV4.Type) ->
@@ -117,7 +133,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, actions: actions, selection: selection)
+        .init(challenge: challenge, actions: actions, selection: _selection, internalSelection: _internalSelection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView, BV4: BlockView, BV5: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type, _ bv4: BV4.Type, _ bv5: BV5.Type)
@@ -132,7 +148,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, actions: actions, selection: selection)
+        .init(challenge: challenge, actions: actions, selection: _selection, internalSelection: _internalSelection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView, BV4: BlockView, BV5: BlockView, BV6: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type, _ bv4: BV4.Type, _ bv5: BV5.Type, _ bv6: BV6.Type)
@@ -150,7 +166,7 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, actions: actions, selection: selection)
+        .init(challenge: challenge, actions: actions, selection: _selection, internalSelection: _internalSelection)
     }
     
     public func register<BV1: BlockView, BV2: BlockView, BV3: BlockView, BV4: BlockView, BV5: BlockView, BV6: BlockView, BV7: BlockView>(_ bv1: BV1.Type, _ bv2: BV2.Type, _ bv3: BV3.Type, _ bv4: BV4.Type, _ bv5: BV5.Type, _ bv6: BV6.Type, _ bv7: BV7.Type)
@@ -168,7 +184,14 @@ extension BaseChallengeView {
             >
         >
     {
-        .init(challenge: challenge, actions: actions, selection: selection)
+        .init(challenge: challenge, actions: actions, selection: _selection, internalSelection: _internalSelection)
+    }
+}
+
+public extension BaseChallengeView {
+    func onButtonAction(_ event: @escaping (BlockButton) -> Void) -> Self {
+        let feedback = BlockButtonFeedback(event)
+        return .init(challenge: challenge, actions: actions + [feedback], selection: _selection, internalSelection: _internalSelection)
     }
 }
 
