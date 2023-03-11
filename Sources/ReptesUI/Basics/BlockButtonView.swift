@@ -16,6 +16,12 @@ public struct BlockButtonFeedback: Action {
     }
 }
 
+public extension BaseChallengeView {
+    func onButtonAction(_ event: @escaping (BlockButton) -> Void) -> Self {
+        self.addAction(BlockButtonFeedback(event))
+    }
+}
+
 struct BlockButtonView: BlockView {
     var block: any Block
     var actions: [Action]

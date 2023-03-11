@@ -28,7 +28,7 @@ public struct BaseChallengeView<BV: BlockView>: View {
         self._selection = selection
     }
     
-    public init(challenge: Challenge, actions: [Action], selection: Binding<UUID>, internalSelection: State<UUID>) {
+    private init(challenge: Challenge, actions: [Action], selection: Binding<UUID>, internalSelection: State<UUID>) {
         self.challenge = challenge
         self.actions = actions
         self._selection = selection
@@ -189,9 +189,8 @@ extension BaseChallengeView {
 }
 
 public extension BaseChallengeView {
-    func onButtonAction(_ event: @escaping (BlockButton) -> Void) -> Self {
-        let feedback = BlockButtonFeedback(event)
-        return .init(challenge: challenge, actions: actions + [feedback], selection: _selection, internalSelection: _internalSelection)
+    func addAction(_ action: any Action) -> Self {
+        return .init(challenge: challenge, actions: actions + [action], selection: _selection, internalSelection: _internalSelection)
     }
 }
 
