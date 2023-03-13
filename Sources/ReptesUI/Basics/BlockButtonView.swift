@@ -23,6 +23,7 @@ public extension BaseChallengeView {
 }
 
 struct BlockButtonView: BlockView {
+    @Environment(\.locale) var locale
     var block: any Block
     var actions: [Action]
     
@@ -43,7 +44,7 @@ struct BlockButtonView: BlockView {
                 VStack {
                     HStack {
                         Spacer()
-                        Text(verbatim: blockButton.localizedText.text)
+                        Text(verbatim: blockButton.localizedText.text(for: locale))
                             .bold()
                             .multilineTextAlignment(.center)
                             .padding()

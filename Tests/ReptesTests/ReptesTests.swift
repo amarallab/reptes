@@ -26,7 +26,10 @@ final class ReptesTests: XCTestCase {
                     blocks: [
                         BlockButton(
                             id: UUID(),
-                            localizedText: .init(values: ["en": "Next"]),
+                            localizedText: .init(values: [
+                                "en": "Next",
+                                "es": "Siguiente"
+                            ]),
                             action: .next),
                         BlockImage(
                             id: UUID(),
@@ -38,7 +41,10 @@ final class ReptesTests: XCTestCase {
                             coordinateRegion: .northwestern),
                         BlockMarkdown(
                             id: UUID(),
-                            localizedText: .init(values: ["en": "Text *test*"]),
+                            localizedText: .init(values: [
+                                "en": "Text *test*",
+                                "es": "Texto *test"
+                            ]),
                             backgroundTransparent: true,
                             underlined: false)
                     ])
@@ -84,7 +90,10 @@ final class ReptesTests: XCTestCase {
                             {
                                 "type": "markdown",
                                 "id": "406F437C-31DC-12C7-A524-1DFB02DF849A",
-                                "localizedText": {"en": "Test *text*"}
+                                "localizedText": {
+                                    "en": "Test *text*",
+                                    "es": "Test *texto*"
+                                }
                             }
                         ]
                     }
@@ -144,16 +153,17 @@ final class ReptesTests: XCTestCase {
     }
     
     func test() throws {
+        let locale = Locale(identifier: "en")
         for b in testChallenge.pages[0].blocks {
             switch b {
             case let b2 as BlockButton:
-                print("Button: \(b2.localizedText.text)")
+                print("Button: \(b2.localizedText.text(for: locale))")
             case let b2 as BlockImage:
                 print("Image: \(b2.height)")
             case let b2 as BlockMap:
                 print("Map: \(b2.coordinateRegion)")
             case let b2 as BlockMarkdown:
-                print("Markdown: \(b2.localizedText.text)")
+                print("Markdown: \(b2.localizedText.text(for: locale))")
             default:
                 assert(false)
             }

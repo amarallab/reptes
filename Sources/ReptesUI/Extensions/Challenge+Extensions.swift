@@ -37,29 +37,53 @@ extension Challenge {
                 id: UUID(),
                 title: "",
                 blocks: [
-                    BlockMarkdown(id: UUID(), localizedText: .init(values: ["en": "First page"])),
+                    BlockMarkdown(id: UUID(), localizedText: .init(values: [
+                        "en": "First page",
+                        "es": "Primera página"
+                    ])),
                     BlockImage.preview,
-                    BlockButton(id: UUID(), localizedText: .init(values: ["en": "Next"]), action: .next)
+                    BlockButton(id: UUID(), localizedText: .init(values: [
+                        "en": "Next",
+                        "es": "Siguiente"
+                    ]), action: .next)
                 ]
             ),
             .init(
                 id: UUID(),
                 title: "",
                 blocks: [
-                    BlockMarkdown(id: UUID(), localizedText: .init(values: ["en": "Second page"])),
+                    BlockMarkdown(id: UUID(), localizedText: .init(values: [
+                        "en": "Second page",
+                        "es": "Segunda página"
+                    ])),
                     BlockImage.preview,
-                    BlockButton(id: UUID(), localizedText: .init(values: ["en": "Previous"]), action: .previous),
-                    BlockButton(id: UUID(), localizedText: .init(values: ["en": "Next"]), action: .next)
+                    BlockButton(id: UUID(), localizedText: .init(values: [
+                        "en": "Previous",
+                        "es": "Anterior"
+                    ]), action: .previous),
+                    BlockButton(id: UUID(), localizedText: .init(values: [
+                        "en": "Next",
+                        "es": "Siguiente"
+                    ]), action: .next)
                 ]
             ),
             .init(
                 id: UUID(),
                 title: "",
                 blocks: [
-                    BlockMarkdown(id: UUID(), localizedText: .init(values: ["en": "Final page"])),
+                    BlockMarkdown(id: UUID(), localizedText: .init(values: [
+                        "en": "Final page",
+                        "es": "Página final"
+                    ])),
                     BlockImage.preview,
-                    BlockButton(id: UUID(), localizedText: .init(values: ["en": "Previous"]), action: .previous),
-                    BlockButton(id: UUID(), localizedText: .init(values: ["en": "Close"]), action: .close)
+                    BlockButton(id: UUID(), localizedText: .init(values: [
+                        "en": "Previous",
+                        "es": "Anterior"
+                    ]), action: .previous),
+                    BlockButton(id: UUID(), localizedText: .init(values: [
+                        "en": "Close",
+                        "es": "Cerrar"
+                    ]), action: .close)
                 ]
             )
         ])

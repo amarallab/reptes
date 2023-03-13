@@ -20,6 +20,10 @@ extension ChallengeCard {
             "en": """
                   ## Title
                   Example text first
+                  """,
+            "es": """
+                  ## Título
+                  Ejemplo texto primero
                   """
         ]))
 
@@ -33,6 +37,10 @@ extension ChallengeCard {
             "en": """
                   ## Title
                   Example text last
+                  """,
+            "es": """
+                  ## Título
+                  Ejemplo texto último
                   """
         ]))
 }

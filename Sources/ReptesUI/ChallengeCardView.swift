@@ -22,6 +22,7 @@ extension Theme {
 }
 
 public struct ChallengeCardView: View {
+    @Environment(\.locale) var locale
     var card: ChallengeCard
     var mapWidth: CGFloat
     
@@ -36,9 +37,9 @@ public struct ChallengeCardView: View {
                 Group(reversed: card.imageStyle == .textLast) {
                     VStack(alignment: .leading) {
                         HStack {
-                            Markdown(card.localizedTitle.text)
+                            Markdown(card.localizedTitle.text(for: locale))
                                 .markdownTheme(.basicWith(foregroundColor: card.foregroundColor?.color))
-                                .id(card.localizedTitle.text)
+                                .id(card.localizedTitle.text(for: locale))
                             Spacer()
                         }
                         Spacer()
@@ -88,6 +89,7 @@ struct ChallengeCardView_Previews: PreviewProvider {
                 .navigationTitle("Challenges")
             }
             .navigationViewStyle(.stack)
+            .environment(\.locale, Locale(identifier: "es"))
         }
     }
     

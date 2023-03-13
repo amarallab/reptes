@@ -14,11 +14,15 @@ extension Page {
         blocks: [
             BlockButton(
                 id: UUID(),
-                localizedText: .init(values: ["en": "Next"]),
+                localizedText: .init(values: [
+                    "en": "Next",
+                    "es": "Siguiente"]),
                 action: .next),
             BlockMarkdown(
                 id: UUID(),
-                localizedText: .init(values: ["en": "Text *test*"]),
+                localizedText: .init(values: [
+                    "en": "Text *test*",
+                    "es": "Texto *test"]),
                 backgroundTransparent: true,
                 underlined: false)
         ])

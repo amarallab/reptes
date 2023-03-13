@@ -10,6 +10,7 @@ import Reptes
 import SwiftUI
 
 struct BlockMarkdownView: BlockView {
+    @Environment(\.locale) var locale
     var block: any Block
 
     init(block: any Block, actions: [Action]) {
@@ -24,8 +25,8 @@ struct BlockMarkdownView: BlockView {
         if let blockMarkdown = block as? BlockMarkdown {
             VStack(spacing: 0) {
                 HStack {
-                    Markdown(blockMarkdown.localizedText.text)
-                        .id(blockMarkdown.localizedText.text)
+                    Markdown(blockMarkdown.localizedText.text(for: locale))
+                        .id(blockMarkdown.localizedText.text(for: locale))
                     Spacer()
                 }
                 if blockMarkdown.underlined ?? false {
