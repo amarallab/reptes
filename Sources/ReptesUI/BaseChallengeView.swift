@@ -196,6 +196,14 @@ public extension BaseChallengeView {
             return .init(challenge: challenge, actions: actions + [action], selection: _selection, internalSelection: _internalSelection)
         }
     }
+    
+    func addAction(_ action: (any Action)?) -> Self {
+        if let action {
+            return .init(challenge: challenge, actions: actions + [action], selection: _selection, internalSelection: _internalSelection)
+        } else {
+            return self
+        }
+    }
 }
 
 struct BaseChallegeView_Previews: PreviewProvider {
