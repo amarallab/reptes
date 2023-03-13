@@ -62,7 +62,6 @@ public struct ChallengeCardView: View {
         .background(card.backgroundColor?.color ?? Color.accentColor)
         .cornerRadius(8.0)
         .contentShape(Rectangle())
-        .accessibilityAddTraits(.isButton)
     }
 }
 
@@ -71,24 +70,24 @@ struct ChallengeCardView_Previews: PreviewProvider {
         @State var count = 1
         
         var body: some View {
-            GeometryReader { proxy in
+            NavigationView {
                 List {
-                    Text("Value: \(count)")
-                    ChallengeCardView(card: .previewTextFirst, mapWidth: proxy.size.width * 0.3)
+                    ChallengeCardView(card: .previewTextFirst, mapWidth: 150)
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
                     
                     Button {
                         count += 1
                     } label: {
-                        ChallengeCardView(card: .previewTextLast, mapWidth: proxy.size.width * 0.3)
+                        ChallengeCardView(card: .previewTextLast, mapWidth: 150)
                     }
                     .buttonStyle(.borderless)
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
                 }
-                .listStyle(.sidebar)
+                .navigationTitle("Challenges")
             }
+            .navigationViewStyle(.stack)
         }
     }
     

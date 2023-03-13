@@ -189,8 +189,12 @@ extension BaseChallengeView {
 }
 
 public extension BaseChallengeView {
-    func addAction(_ action: any Action) -> Self {
-        return .init(challenge: challenge, actions: actions + [action], selection: _selection, internalSelection: _internalSelection)
+    func addAction(_ action: any Action, if condition: Bool = true) -> Self {
+        if !condition {
+            return self
+        } else {
+            return .init(challenge: challenge, actions: actions + [action], selection: _selection, internalSelection: _internalSelection)
+        }
     }
 }
 
