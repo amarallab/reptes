@@ -72,7 +72,7 @@ struct BlockMarkdownView: BlockView {
                     if let timer {
                         EmptyView()
                             .onReceive(timer) { _ in
-                                let elapsedPercentage = Date().timeIntervalSince(untilDate) / unveil.waitingTime
+                                let elapsedPercentage = 1.0 - untilDate.timeIntervalSinceNow / unveil.waitingTime
                                 withAnimation {
                                     if elapsedPercentage >= 1.0 {
                                         status = .unveilable
