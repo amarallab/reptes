@@ -15,7 +15,7 @@ public struct JSONColor: Codable, Hashable, Equatable {
     public var opacity: Double
     
     public var color: Color { .init(red: red, green: green, blue: blue, opacity: opacity) }
-    public var uiColor: UIColor { .init(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(opacity)) }
+    public var uiColor: KYColor { .init(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(opacity)) }
     
     public init(red: Double, green: Double, blue: Double, opacity: Double) {
         self.red = red
@@ -25,10 +25,10 @@ public struct JSONColor: Codable, Hashable, Equatable {
     }
     
     public init(color: Color) {
-        self.init(uiColor: UIColor(color))
+        self.init(uiColor: KYColor(color))
     }
     
-    public init(uiColor: UIColor) {
+    public init(uiColor: KYColor) {
         var r: CGFloat = .zero
         var g: CGFloat = .zero
         var b: CGFloat = .zero

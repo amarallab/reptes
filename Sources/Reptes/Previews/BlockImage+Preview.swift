@@ -9,10 +9,15 @@ import SwiftUI
 
 extension BlockImage {
     public static let preview: BlockImage = {
-        let trashImage: UIImage?
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 140, weight: .bold, scale: .large)
-        if let data = UIImage(systemName: "trash.circle", withConfiguration: largeConfig)?.pngData() {
-            trashImage = UIImage(data: data)
+        let trashImage: KYImage?
+        #if os(iOS)
+            let largeConfig = KYImage.SymbolConfiguration(pointSize: 140, weight: .bold, scale: .large)
+            let data = KYImage(systemName: "trash.circle", withConfiguration: largeConfig)?.pngData()
+        #elseif os(macOS)
+        let data = NSImage(systemSymbolName: "trask.circle", accessibilityDescription: nil)?.pngData()
+        #endif
+        if let data {
+            trashImage = KYImage(data: data)
         } else {
             trashImage = nil
         }

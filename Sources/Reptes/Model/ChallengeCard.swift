@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+
 
 public struct ChallengeCard: Codable, Hashable, Identifiable, Equatable {
     public enum Style: String, Codable, Hashable {
@@ -17,7 +17,7 @@ public struct ChallengeCard: Codable, Hashable, Identifiable, Equatable {
     public let id: UUID
     public var backgroundColor: JSONColor?
     public var foregroundColor: JSONColor?
-    public var image: UIImage?
+    public var image: KYImage?
     public var imageStyle: Style
     public var localizedTitle: LocalizedText
     
@@ -31,14 +31,14 @@ public struct ChallengeCard: Codable, Hashable, Identifiable, Equatable {
         backgroundColor = try container.decodeIfPresent(JSONColor.self, forKey: .backgroundColor)
         foregroundColor = try container.decodeIfPresent(JSONColor.self, forKey: .foregroundColor)
         if let data = try container.decodeIfPresent(Data.self, forKey: .image) {
-            guard let uiImage = UIImage(data: data) else { throw DecodingError.dataCorruptedError(forKey: .image, in: container, debugDescription: "Image format error") }
+            guard let uiImage = KYImage(data: data) else { throw DecodingError.dataCorruptedError(forKey: .image, in: container, debugDescription: "Image format error") }
             image = uiImage
         }
         imageStyle = try container.decode(Style.self, forKey: .imageStyle)
         localizedTitle = try container.decode(LocalizedText.self, forKey: .localizedTitle)
     }
     
-    public init(id: UUID, backgroundColor: JSONColor? = nil, foregroundColor: JSONColor? = nil, image: UIImage? = nil, imageStyle: Style = .textFirst, localizedTitle: LocalizedText = .empty) {
+    public init(id: UUID, backgroundColor: JSONColor? = nil, foregroundColor: JSONColor? = nil, image: KYImage? = nil, imageStyle: Style = .textFirst, localizedTitle: LocalizedText = .empty) {
         self.id = id
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor

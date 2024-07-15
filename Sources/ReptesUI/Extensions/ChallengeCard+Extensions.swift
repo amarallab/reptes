@@ -7,14 +7,18 @@
 
 import Foundation
 import Reptes
-import UIKit
 
 extension ChallengeCard {
+    public static var forestMushroomImage: KYImage? {
+        Bundle.module.image(forResource: "ForestMushroom")
+        //UIImage(named: "ForestMushroom", in: Bundle.module, with: nil),
+    }
+    
     public static let previewTextFirst = ChallengeCard(
         id: UUID(),
         backgroundColor: .init(color: .green),
         foregroundColor: .init(color: .white),
-        image: UIImage(named: "ForestMushroom", in: Bundle.module, with: nil),
+        image: forestMushroomImage,
         imageStyle: .textFirst,
         localizedTitle: .init(values: [
             "en": """
@@ -31,7 +35,7 @@ extension ChallengeCard {
         id: UUID(),
         backgroundColor: .init(color: .green),
         foregroundColor: .init(color: .white),
-        image: UIImage(named: "ForestMushroom", in: Bundle.module, with: nil),
+        image: forestMushroomImage,
         imageStyle: .textLast,
         localizedTitle: .init(values: [
             "en": """

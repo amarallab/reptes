@@ -6,18 +6,17 @@
 //
 
 import Foundation
-import UIKit
 
 public struct BlockImage: Block, Codable, Equatable, Hashable {
     public var id: UUID
     public var height: BlockHeight
-    public var image: UIImage?
+    public var image: KYImage?
     
     enum CodingKeys: CodingKey {
         case id, height, image
     }
     
-    public init(id: UUID, height: BlockHeight, image: UIImage? = nil) {
+    public init(id: UUID, height: BlockHeight, image: KYImage? = nil) {
         self.id = id
         self.height = height
         self.image = image
@@ -28,7 +27,7 @@ public struct BlockImage: Block, Codable, Equatable, Hashable {
         id = try container.decode(UUID.self, forKey: .id)
         height = try container.decode(BlockHeight.self, forKey: .height)
         if let data = try container.decodeIfPresent(Data.self, forKey: .image) {
-            image = UIImage(data: data)
+            image = KYImage(data: data)
         }
     }
     

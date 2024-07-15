@@ -22,7 +22,7 @@ struct BlockImageView: BlockView {
     var body: some View {
         if let blockImage = block as? BlockImage {
             if let image = blockImage.image {
-                Image(uiImage: image)
+                Image(kyImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .clipShape(RoundedRectangle(cornerRadius: 10.0))
