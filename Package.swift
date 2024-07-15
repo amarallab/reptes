@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Reptes",
     platforms: [
-        .macOS("12.0"),
+        .macOS("13.0"),
         .iOS("15.0")
     ],
     products: [

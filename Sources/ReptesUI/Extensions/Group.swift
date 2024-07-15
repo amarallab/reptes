@@ -72,6 +72,7 @@ fileprivate struct GroupExampleView: View {
                 }
             }
             .navigationTitle("Example")
+            #if os(iOS)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     Picker("", selection: $reversed) {
@@ -81,6 +82,7 @@ fileprivate struct GroupExampleView: View {
                     .pickerStyle(.segmented)
                 }
             }
+            #endif
         }
     }
 }

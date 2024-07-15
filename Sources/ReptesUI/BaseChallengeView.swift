@@ -87,7 +87,9 @@ public struct BaseChallengeView<BV: BlockView>: View {
         .edgesIgnoringSafeArea(.bottom)
         .onAppear { selection = challenge.pages.first?.id ?? UUID() }
         .background(Color.systemGroupedBackground.ignoresSafeArea())
+        #if os(iOS)
         .tabViewStyle(.page(indexDisplayMode: .never))
+        #endif
     }
 }
 

@@ -49,7 +49,7 @@ public struct ChallengeCardView: View {
                     Spacer()
                     
                     if let uiImage = card.image {
-                        Image(uiImage: uiImage)
+                        Image(kyImage: uiImage)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(minWidth: mapWidth, maxWidth: mapWidth, minHeight: mapWidth)
@@ -88,7 +88,9 @@ struct ChallengeCardView_Previews: PreviewProvider {
                 }
                 .navigationTitle("Challenges")
             }
+            #if os(iOS)
             .navigationViewStyle(.stack)
+            #endif
             .environment(\.locale, Locale(identifier: "es"))
         }
     }

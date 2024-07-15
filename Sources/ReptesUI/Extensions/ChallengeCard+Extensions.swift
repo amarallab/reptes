@@ -8,10 +8,17 @@
 import Foundation
 import Reptes
 
+#if os(iOS)
+import UIKit
+#endif
+
 extension ChallengeCard {
     public static var forestMushroomImage: KYImage? {
-        Bundle.module.image(forResource: "ForestMushroom")
-        //UIImage(named: "ForestMushroom", in: Bundle.module, with: nil),
+        #if os(iOS)
+        return UIImage(named: "ForestMushroom", in: Bundle.module, with: nil)
+        #elseif os(macOS)
+        return Bundle.module.image(forResource: "ForestMushroom")
+        #endif
     }
     
     public static let previewTextFirst = ChallengeCard(

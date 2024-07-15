@@ -27,7 +27,11 @@ public struct NavigationChallengeView<BV: BlockView>: View {
                         close?()
                     }
                 }
+                #if os(iOS)
                 .navigationBarTitle(title, displayMode: .inline)
+                #elseif os(macOS)
+                .navigationTitle(title)
+                #endif
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Close") {
@@ -36,7 +40,9 @@ public struct NavigationChallengeView<BV: BlockView>: View {
                     }
                 }
         }
+        #if os(iOS)
         .navigationViewStyle(.stack)
+        #endif
     }
 }
 

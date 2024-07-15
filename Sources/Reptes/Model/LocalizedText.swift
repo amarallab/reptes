@@ -25,7 +25,11 @@ public struct LocalizedText: Codable, Hashable, Equatable {
     }
     
     public func text(for locale: Locale) -> String {
+        #if os(iOS)
         let languageIdentifier = locale.languageCode ?? "en"
+        #elseif os(macOS)
+        let languageIdentifier = locale.language.languageCode?.identifier ?? "en"
+        #endif
         return values[languageIdentifier] ?? ""
     }
 
@@ -34,7 +38,11 @@ public struct LocalizedText: Codable, Hashable, Equatable {
     }
     
     public mutating func set(text: String, for locale: Locale) {
+        #if os(iOS)
         let languageIdentifier = locale.languageCode ?? "en"
+        #elseif os(macOS)
+        let languageIdentifier = locale.language.languageCode?.identifier ?? "en"
+        #endif
         values[languageIdentifier] = text
     }
 

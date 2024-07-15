@@ -1,4 +1,5 @@
 @testable import Reptes
+#if os(iOS)
 import UIKit
 import XCTest
 
@@ -201,3 +202,4 @@ final class ReptesTests: XCTestCase {
         assert(challenge == decodedChallenge)
     }
 }
+#endif
