@@ -35,7 +35,31 @@ extension Challenge {
                             "es": "Texto *test*"]),
                         backgroundTransparent: false,
                         underlined: false)
+                ]),
+            .init(
+                id: UUID(),
+                title: "",
+                blocks: [
+                    BlockButton(
+                        id: UUID(),
+                        localizedText: .init(values: [
+                            "en": "Next",
+                            "es": "Siguiente"]),
+                        action: .next),
+                    BlockImage.preview,
+                    BlockMap(
+                        id: UUID(),
+                        height: .regular,
+                        coordinateRegion: .northwestern),
+                    BlockMarkdown(
+                        id: UUID(),
+                        localizedText: .init(values: [
+                            "en": "Text *test*",
+                            "es": "Texto *test*"]),
+                        backgroundTransparent: false,
+                        underlined: false)
                 ])
+
         ])
     
 }

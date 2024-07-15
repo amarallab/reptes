@@ -8,7 +8,7 @@
 import Foundation
 
 public struct LocalizedText: Codable, Hashable, Equatable {
-    private var values: [String: String] // Locale identifier: Text
+    public var values: [String: String] // Locale identifier: Text
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -41,6 +41,7 @@ public struct LocalizedText: Codable, Hashable, Equatable {
     public mutating func set(text: String, for localeIdentifier: String) {
         values[localeIdentifier] = text
     }
+
 }
 
 extension LocalizedText {

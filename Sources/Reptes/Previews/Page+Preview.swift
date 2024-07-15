@@ -27,3 +27,20 @@ extension Page {
                 underlined: false)
         ])
 }
+
+extension Array where Element == Page {
+    public static let preview: [Page] = [
+        Page(
+            id: UUID(),
+            title: "Page 1",
+            blocks: .preview),
+        Page(
+            id: UUID(),
+            title: "Page 2",
+            blocks: .preview),
+        Page(
+            id: UUID(),
+            title: "Page 3",
+            blocks: .preview)
+    ]
+}
