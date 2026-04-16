@@ -44,14 +44,16 @@ public struct BaseChallengeView<BV: BlockView>: View {
         }
         return challenge.pages[prevIndex].id
     }
-    
+
     func nextId(of id: UUID) -> UUID? {
         guard
-            let firstIndex = challenge.pages.firstIndex(where: { $0.id == id }),
-            let nextIndex = challenge.pages.index(firstIndex, offsetBy: 1, limitedBy: challenge.pages.endIndex)
+            let index = challenge.pages.firstIndex(where: { $0.id == id }),
+            index < challenge.pages.index(before: challenge.pages.endIndex)
         else {
             return nil
         }
+        
+        let nextIndex = challenge.pages.index(after: index)
         return challenge.pages[nextIndex].id
     }
 
