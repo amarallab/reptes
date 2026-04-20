@@ -84,6 +84,7 @@ public struct BaseChallengeView<BV: BlockView>: View {
         TabView(selection: $selection) {
             ForEach(challenge.pages) { page in
                 PageView<BV>(page: page, actions: internalActions)
+                    .tag(page.id)
             }
         }
         .edgesIgnoringSafeArea(.bottom)
