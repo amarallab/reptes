@@ -63,15 +63,11 @@ public struct BaseChallengeView<BV: BlockView>: View {
                 switch button.action {
                 case .next:
                     if let id = nextId(of: selection) {
-                        withAnimation {
-                            selection = id
-                        }
+                        selection = id
                     }
                 case .previous:
                     if let id = prevId(of: selection) {
-                        withAnimation {
-                            selection = id
-                        }
+                        selection = id
                     }
                 default:
                     break
